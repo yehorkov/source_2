@@ -1,5 +1,5 @@
 const filter = () => {
-    const menu = document.querySelector('.portfolio-menu'),
+    const menu = document.querySelector('.portfolio-menu'), // Получаем все элементы со страницы
           items = menu.querySelectorAll('li'),
           // btnAll = menu.querySelector('.all'),
           // btnLovers = menu.querySelector('.lovers'),
@@ -16,28 +16,28 @@ const filter = () => {
           // markGuy = wrapper.querySelectorAll('.guy'),
           no = document.querySelector('.portfolio-no');
 
-    const typeFilter = (markType) => {
-        markAll.forEach(mark => {
-            mark.style.display = 'none';
-            mark.classList.remove('animated', 'fadeIn');
+    const typeFilter = (markType) => { // Функция отображения элементов
+        markAll.forEach(mark => { // Перебираем элементы со страницы
+            mark.style.display = 'none'; // Ставим стиль display none
+            mark.classList.remove('animated', 'fadeIn'); // Убираем классы анимации
         });
 
-        no.style.display = 'none';
-        no.classList.remove('animated', 'fadeIn');
+        no.style.display = 'none'; // Для элемента no ставим стиль display none
+        no.classList.remove('animated', 'fadeIn'); // и убираем классы анимации
 
-        if (markType) {
-            markType.forEach(mark => {
-                mark.style.display = 'block';
-                mark.classList.add('animated', 'fadeIn');
+        if (markType) { // Если передан аргумент
+            markType.forEach(mark => { // Перебираем все элементы
+                mark.style.display = 'block'; // ставим стиль display block
+                mark.classList.add('animated', 'fadeIn'); // и добавляем классы анимации
             });
         }
-        if (markType.length == 0) {
-          no.style.display = 'block';
-          no.classList.add('animated', 'fadeIn');
+        if (markType.length == 0) { // Если элементов в данном разделе нет
+          no.style.display = 'block'; // Отображаем блок с сообщением, что таких работ не делали
+          no.classList.add('animated', 'fadeIn'); // и добавляем ему классы анимации
         }
     };
 
-    // btnAll.addEventListener('click', () => {
+    // btnAll.addEventListener('click', () => { // Для каждой кнопки навешиваем обработчик события и вызываем функцию для отображения определённого контента
     //     typeFilter(markAll);
     // });
 
@@ -65,22 +65,24 @@ const filter = () => {
     //     typeFilter();
     // });
 
-    menu.addEventListener('click', (e) => {
-        let classSelect = e.target.classList[0]
-        let allElems = wrapper.querySelectorAll(`.${classSelect}`)
-        typeFilter(allElems)
+    menu.addEventListener('click', (e) => { // Навешиваем обработчик события
+        let classSelect = e.target.classList[0] // По умолчанию выбираем отображение первого элемента
+        let allElems = wrapper.querySelectorAll(`.${classSelect}`) // Отображаем элементы на странице
+        typeFilter(allElems) // и вызываем функцию, которая отфильтрует элементы
     });
 
-    menu.addEventListener('click', (e) => {
-        let target = e.target;
+    menu.addEventListener('click', (e) => { // Навешиваем обработчик события
+        let target = e.target; // Переменная события
 
-        if (target && target.tagName == 'LI') {
-            items.forEach(btn => {
-                btn.classList.remove('active');
+        if (target && target.tagName == 'LI') { // Если событие и имя события содержит 'LI'
+            items.forEach(btn => { // Перебираем все элементы
+                btn.classList.remove('active'); // Убираем им класс активности
             })
-            target.classList.add('active');
+            target.classList.add('active'); // Добавляем класс активности объекту события
         }
     });
 };
 
 export default filter;
+
+// Закомментированные переменные использовались в коде, где для каждого типа картин вызывался свой обработчик события
